@@ -1,0 +1,29 @@
+{
+  "port": 4000,
+  "strategy": "round-robin",
+  "timeout": 5000,
+  "servers": [
+    {
+      "id": "test-server-1",
+      "host": "127.0.0.1",
+      "port": 4001
+    },
+    {
+      "id": "test-server-2",
+      "host": "127.0.0.1",
+      "port": 4002
+    }
+  ],
+  "healthCheck": {
+    "enabled": true,
+    "interval": 2000,
+    "timeout": 1000,
+    "healthyThreshold": 1,
+    "unhealthyThreshold": 2,
+    "path": "/health"
+  },
+  "logging": {
+    "level": "debug",
+    "format": "json"
+  }
+}
