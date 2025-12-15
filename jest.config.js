@@ -37,4 +37,5 @@ export default {
   moduleFileExtensions: ['ts', 'js', 'json'],
   verbose: true,
   testTimeout: 10000,
+  injectGlobals: true,
 };
