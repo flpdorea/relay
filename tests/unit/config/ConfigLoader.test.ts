@@ -1,7 +1,3 @@
-/**
- * Unit tests for ConfigLoader
- */
-
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -90,13 +86,13 @@ describe('ConfigLoader', () => {
     it('should throw error if config is not an object', () => {
       expect(() => ConfigLoader.validate(null)).toThrow(ConfigValidationError);
       expect(() => ConfigLoader.validate(null)).toThrow('Configuration must be an object');
-      
+
       expect(() => ConfigLoader.validate('string')).toThrow(ConfigValidationError);
       expect(() => ConfigLoader.validate('string')).toThrow('Configuration must be an object');
-      
+
       expect(() => ConfigLoader.validate(123)).toThrow(ConfigValidationError);
       expect(() => ConfigLoader.validate(123)).toThrow('Configuration must be an object');
-      
+
       expect(() => ConfigLoader.validate([])).toThrow(ConfigValidationError);
       expect(() => ConfigLoader.validate([])).toThrow('Configuration must be an object');
     });
@@ -229,9 +225,7 @@ describe('ConfigLoader', () => {
       it('should validate optional weight', () => {
         const config = {
           ...validConfig,
-          servers: [
-            { id: 'server-1', host: 'localhost', port: 3001, weight: 5 },
-          ],
+          servers: [{ id: 'server-1', host: 'localhost', port: 3001, weight: 5 }],
         };
         const validated = ConfigLoader.validate(config);
         expect(validated.servers[0].weight).toBe(5);
@@ -240,7 +234,14 @@ describe('ConfigLoader', () => {
       it('should throw error if weight is invalid', () => {
         const config1 = {
           ...validConfig,
-          servers: [{ id: 'server-1', host: 'localhost', port: 3001, weight: 'invalid' }],
+          servers: [
+            {
+              id: 'server-1',
+              host: 'localhost',
+              port: 3001,
+              weight: 'invalid',
+            },
+          ],
         };
         expect(() => ConfigLoader.validate(config1)).toThrow('servers[0].weight must be a number');
 
