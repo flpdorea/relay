@@ -1,0 +1,37 @@
+{
+  "port": 3000,
+  "strategy": "round-robin",
+  "timeout": 30000,
+  "servers": [
+    {
+      "id": "server-1",
+      "host": "localhost",
+      "port": 3001,
+      "weight": 1
+    },
+    {
+      "id": "server-2",
+      "host": "localhost",
+      "port": 3002,
+      "weight": 1
+    },
+    {
+      "id": "server-3",
+      "host": "localhost",
+      "port": 3003,
+      "weight": 1
+    }
+  ],
+  "healthCheck": {
+    "enabled": true,
+    "interval": 5000,
+    "timeout": 3000,
+    "healthyThreshold": 2,
+    "unhealthyThreshold": 3,
+    "path": "/health"
+  },
+  "logging": {
+    "level": "info",
+    "format": "text"
+  }
+}
