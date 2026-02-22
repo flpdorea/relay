@@ -2,6 +2,8 @@
 
 A TypeScript HTTP load balancer with pluggable strategies and health checks.
 
+[![codecov](https://codecov.io/gh/flpdorea/relay/branch/master/graph/badge.svg)](https://codecov.io/gh/flpdorea/relay)
+
 ## Table of Contents
 
 - [Features](#features)
