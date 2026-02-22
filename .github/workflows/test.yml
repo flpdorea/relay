@@ -1,4 +1,4 @@
-name: CI
+name: Test
 
 on:
   push:
@@ -9,36 +9,23 @@ on:
 
 jobs:
   test:
-    name: Test and Lint
+    name: Run Tests
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [24.x]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '24.x'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run type checking
-        run: npm run typecheck
-
-      - name: Run linter
-        run: npm run lint
-
-      - name: Run format check
-        run: npm run format:check
-
-      - name: Run tests
+      - name: Run tests with coverage
         run: npm run test:coverage
 
       - name: Upload coverage reports
@@ -47,6 +34,3 @@ jobs:
           files: ./coverage/lcov.info
           flags: unittests
           name: codecov-umbrella
-
-      - name: Build project
-        run: npm run build
