@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import * as path from 'path';
 import { LoadBalancerConfig, ServerConfig, HealthCheckConfig, LoggingConfig, StrategyType } from './types';
 
 export class ConfigValidationError extends Error {
@@ -10,12 +9,6 @@ export class ConfigValidationError extends Error {
 }
 
 export class ConfigLoader {
-  /**
-   * Load configuration from a JSON file
-   * @param filePath Path to the configuration file
-   * @returns Validated LoadBalancerConfig
-   * @throws ConfigValidationError if validation fails
-   */
   static load(filePath: string): LoadBalancerConfig {
     if (!fs.existsSync(filePath)) {
       throw new ConfigValidationError(`Configuration file not found: ${filePath}`);
@@ -35,12 +28,6 @@ export class ConfigLoader {
     return this.validate(rawConfig);
   }
 
-  /**
-   * Validate a configuration object
-   * @param config Raw configuration object
-   * @returns Validated LoadBalancerConfig
-   * @throws ConfigValidationError if validation fails
-   */
   static validate(config: unknown): LoadBalancerConfig {
     if (typeof config !== 'object' || config === null || Array.isArray(config)) {
       throw new ConfigValidationError('Configuration must be an object');
