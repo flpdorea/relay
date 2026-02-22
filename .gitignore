@@ -12,6 +12,12 @@ build/
 coverage/
 .nyc_output/
 
+# Generated test files
+tests/**/*.js
+tests/**/*.js.map
+tests/**/*.d.ts
+tests/**/*.d.ts.map
+
 # Logs
 logs/
 *.log
